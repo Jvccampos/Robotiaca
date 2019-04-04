@@ -1,0 +1,336 @@
+#include <Adafruit_MotorShield.h>
+#include <LiquidCrystal.h>
+Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
+Adafruit_DCMotor *myMotorX = AFMS.getMotor(1);
+Adafruit_DCMotor *myMotorY = AFMS.getMotor(2);
+int lcd_key     = 0;
+LiquidCrystal lcd(8, 9, 4, 5, 6, 7);  
+void setup() {
+  lcd.begin(16, 2);  
+  lcd.setCursor(0,0);  
+  lcd.print("LCD Key Shield");  
+  lcd.setCursor(0,1);  
+  lcd.print("Tecla: ");  
+  AFMS.begin();
+  Serial.begin(9600);
+  //myMotorY->run(FORWARD);
+  //myMotorY->setSpeed(100);
+  //delay(500);
+  //myMotorY->setSpeed(0);
+}
+void buttonDebug(){
+    int botao;  
+    botao = analogRead (0);  //Leitura do valor da porta analógica A0
+  
+    lcd.setCursor(7,1);  
+    if (botao < 100) {  
+       lcd.print ("Direita");  
+       myMotorX->setSpeed(120);
+       myMotorX->run(FORWARD);
+       myMotorY->setSpeed(0);
+    }  
+    else if (botao < 180) {  
+       lcd.print ("Cima    ");
+       myMotorY->setSpeed(60);
+       myMotorY->run(BACKWARD); 
+       myMotorX->setSpeed(0);
+    }  
+    else if (botao < 380){  
+       lcd.print ("Baixo    ");
+       myMotorY->setSpeed(60);
+       myMotorY->run(FORWARD); 
+       myMotorX->setSpeed(0);  
+    }  
+    else if (botao < 580){  
+       lcd.print ("Esquerda");
+       myMotorX->setSpeed(120);
+       myMotorX->run(BACKWARD);
+       myMotorY->setSpeed(0);  
+    }  
+    else if (botao < 780){  
+       lcd.print ("Select   ");  
+    }else{
+       lcd.print ("Nada   ");
+       myMotorX->setSpeed(0);
+       myMotorY->setSpeed(0);
+    }
+}
+void uf(){
+  int botao;  
+    botao = analogRead (0);  //Leitura do valor da porta analógica A0
+    lcd.setCursor(7,1);
+    
+      lcd.print ("Play");  
+      //U
+      myMotorY->run(BACKWARD);
+      myMotorY->setSpeed(100);
+      delay(500);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(120);
+      delay(500);
+      stop(500);
+      myMotorY->run(FORWARD);
+      myMotorY->setSpeed(100);
+      delay(500);
+      stop(500);
+      //F
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(120);
+      delay(500);
+      stop(500);
+      myMotorX->run(BACKWARD);
+      myMotorX->setSpeed(140);
+      delay(400);
+      stop(500);
+      myMotorY->run(BACKWARD);
+      myMotorY->setSpeed(100);
+      delay(250);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(120);
+      delay(400);
+      stop(500);
+      myMotorX->run(BACKWARD);
+      myMotorX->setSpeed(140);
+      delay(400);
+      stop(500);
+      myMotorY->run(BACKWARD);
+      myMotorY->setSpeed(100);
+      delay(250);
+      stop(500);
+      myMotorY->run(FORWARD);
+      myMotorY->setSpeed(100);
+      delay(500);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(120);
+      delay(600);
+      stop(500);
+      myMotorY->run(BACKWARD);
+      myMotorY->setSpeed(100);
+      delay(500);
+      stop(500);
+      //ENDF
+      myMotorY->run(FORWARD);
+      myMotorY->setSpeed(100);
+      delay(500);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(120);
+      delay(250);
+      stop(500);
+      myMotorY->run(BACKWARD);
+      myMotorY->setSpeed(100);
+      delay(200);
+      stop(500);
+      myMotorY->run(FORWARD);
+      myMotorY->setSpeed(100);
+      delay(200);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(120);
+      delay(250);
+      stop(500);
+      myMotorY->run(BACKWARD);
+      myMotorY->setSpeed(100);
+      delay(500);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(120);
+      delay(100);
+      stop(500);
+      myMotorY->run(FORWARD);
+      myMotorY->setSpeed(100);
+      delay(500);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(120);
+      delay(400);
+      stop(500);
+      myMotorX->run(BACKWARD);
+      myMotorX->setSpeed(140);
+      delay(400);
+      stop(500);
+      myMotorY->run(BACKWARD);
+      myMotorY->setSpeed(100);
+      delay(500);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(120);
+      delay(400);
+      stop(500);
+      myMotorY->run(FORWARD);
+      myMotorY->setSpeed(100);
+      delay(200);
+      stop(500);
+      myMotorX->run(BACKWARD);
+      myMotorX->setSpeed(140);
+      delay(200);
+      stop(500);
+      myMotorY->setSpeed(0);
+      myMotorX->setSpeed(0); 
+    
+    lcd.print (""); 
+}
+void enzo(){
+      
+    
+    lcd.setCursor(7,1);
+    
+      myMotorY->run(FORWARD);
+      myMotorY->setSpeed(100);
+      delay(500);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(120);
+      delay(500);
+      stop(500);
+      myMotorX->run(BACKWARD);
+      myMotorX->setSpeed(140);
+      delay(400);
+      stop(500);
+      myMotorY->run(BACKWARD);
+      myMotorY->setSpeed(100);
+      delay(250);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(120);
+      delay(400);
+      stop(500);
+      myMotorX->run(BACKWARD);
+      myMotorX->setSpeed(140);
+      delay(400);
+      stop(500);
+      myMotorY->run(BACKWARD);
+      myMotorY->setSpeed(100);
+      delay(250);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(140);
+      delay(500);
+      stop(600);
+      myMotorY->run(FORWARD);
+      myMotorY->setSpeed(100);
+      delay(500);
+      stop(500);
+      myMotorY->run(BACKWARD);
+      myMotorY->setSpeed(100);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(140);
+      delay(500);
+      stop(500);
+      myMotorY->run(FORWARD);
+      myMotorY->setSpeed(100);
+      delay(500);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(140);
+      delay(500);
+      stop(500);
+      myMotorY->run(BACKWARD);
+      myMotorY->setSpeed(100);
+      myMotorX->run(BACKWARD);
+      myMotorX->setSpeed(140);
+      delay(500);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(140);
+      delay(600);
+      stop(500);
+      myMotorY->run(FORWARD);
+      myMotorY->setSpeed(100);
+      delay(500);
+      stop(500);
+      myMotorX->run(FORWARD);
+      myMotorX->setSpeed(140);
+      delay(500);
+      stop(500);
+      myMotorY->run(BACKWARD);
+      myMotorY->setSpeed(100);
+      delay(450);
+      stop(500);
+      myMotorX->run(BACKWARD);
+      myMotorX->setSpeed(140);
+      delay(500);
+      stop(500);
+    
+}
+void circle(){
+   
+    //Leitura do valor da porta analógica A0
+  lcd.setCursor(7,1);
+  double maxX = 80;
+  double maxY = maxX * 0.6;
+  
+  int currentX = 1;
+  int currentY = 1;
+  
+    for(double i = 0; i < 6.3 ; i+=0.03){
+      
+      currentX = sin((double)i) * maxX;
+      currentY = cos((double)i) * maxY;
+      Serial.print("Output:");
+      Serial.print(i);
+      Serial.print("\n");
+      Serial.print(currentX);
+      Serial.print("\n");
+      Serial.print(currentY);
+      Serial.print("\n");
+      if(currentX > 0){
+        myMotorX->run(FORWARD);
+        myMotorX->setSpeed(50 + currentX);
+      }else{
+        myMotorX->run(BACKWARD);
+        myMotorX->setSpeed(50 -currentX);
+      }
+      if(currentY > 0){
+        myMotorY->run(FORWARD);
+        myMotorY->setSpeed(35 + currentY);
+      }else{
+        myMotorY->run(BACKWARD);
+        myMotorY->setSpeed(35 - currentY);
+      }
+      
+      
+      delay(1);
+    }
+  
+  stop(500);
+}
+void stop(int milis){
+    myMotorX->setSpeed(0);
+    myMotorY->setSpeed(0);
+    delay(milis);
+}
+void loop() {
+  //buttonDebug();
+  int botao;  
+    botao = analogRead (0);  //Leitura do valor da porta analógica A0
+  
+    lcd.setCursor(7,1);  
+    if (botao < 100) {  
+       lcd.print ("Direita");  
+       uf();
+    }
+    else if (botao < 180) {  
+       lcd.print ("Cima    ");
+      
+    }  
+    else if (botao < 380){  
+       lcd.print ("Baixo    ");
+       circle();
+    }  
+    else if (botao < 580){  
+       lcd.print ("Esquerda");
+       enzo();
+    }  
+    else if (botao < 780){  
+       lcd.print ("Select   ");  
+       
+    }else{
+       lcd.print ("Esperando impressão   ");
+       
+    }
+  
+}
